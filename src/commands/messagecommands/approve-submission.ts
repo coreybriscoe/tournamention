@@ -1,17 +1,12 @@
 import { ApplicationCommandType, CommandInteraction, ContextMenuCommandBuilder, GuildMember, Message, PermissionsBitField } from 'discord.js';
-import { RendezvousMessageCommand } from '../architecture/rendezvousCommand.js';
-import { OptionValidationErrorOutcome, Outcome, OutcomeStatus, OutcomeWithMonoBody, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome, isEmbedDescribedOutcome } from '../../types/outcome.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
 import { getSubmissionInCurrentTournamentFromContestantWithLink } from '../../backend/queries/submissionQueries.js';
 import { getContestantByGuildIdAndMemberId, getJudgeByGuildIdAndMemberId } from '../../backend/queries/profileQueries.js';
 import { MakeReviewNoteAndInterpretResultOutcomeStatus, makeReviewNoteAndInterpretResult } from '../slashcommands/judge-submission.js';
 import { getChallengeById } from '../../backend/queries/challengeQueries.js';
 import { ResolvedChallenge } from '../../types/customDocument.js';
-import { OptionValidationErrorStatus, OptionValidationError } from '../../types/customError.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { ALWAYS_OPTION_CONSTRAINT, Constraint, validateConstraints } from '../architecture/validation.js';
-import { defaultSlashCommandDescriptions } from '../../types/defaultSlashCommandDescriptions.js';
+import { OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, OptionValidationErrorStatus, LimitedCommandInteractionOption, ALWAYS_OPTION_CONSTRAINT, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, OutcomeWithMonoBody, defaultSlashCommandDescriptions, SlashCommandEmbedDescribedOutcome, isEmbedDescribedOutcome, RendezvousMessageCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

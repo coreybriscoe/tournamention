@@ -1,15 +1,10 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
-import { OutcomeStatus, Outcome, OptionValidationErrorOutcome, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome } from '../../types/outcome.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints, ALWAYS_OPTION_CONSTRAINT } from '../architecture/validation.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
 import { ResolvedTournament } from '../../types/customDocument.js';
 import { getTournamentByName } from '../../backend/queries/tournamentQueries.js';
-import { TournamentionClient } from '../../types/client.js';
 import { getLeaderboard } from '../../backend/queries/profileQueries.js';
+import { RendezvousClient as TournamentionClient, OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, LimitedCommandInteractionOption, ALWAYS_OPTION_CONSTRAINT, OptionValidationErrorStatus, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.
@@ -189,6 +184,7 @@ const LeaderboardCommand = new SimpleRendezvousSlashCommand<LeaderboardOutcome, 
     leaderboardSlashCommandDescriptions,
     leaderboardSlashCommandValidator,
     leaderboardSolver,
+    true,
 );
 
 export default LeaderboardCommand;

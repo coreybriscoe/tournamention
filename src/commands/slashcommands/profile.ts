@@ -1,14 +1,9 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
-import { OutcomeStatus, Outcome, OptionValidationErrorOutcome, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome } from '../../types/outcome.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints, ALWAYS_OPTION_CONSTRAINT } from '../architecture/validation.js';
-import { OptionValidationError } from '../../types/customError.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
 import { getCareerPointsOfContestant, getOrCreateContestant, getPointsOfContestantForTournament } from '../../backend/queries/profileQueries.js';
-import { TournamentionClient } from '../../types/client.js';
 import { ResolvedTournament, resolveTournaments } from '../../types/customDocument.js';
+import { RendezvousClient as TournamentionClient, OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, LimitedCommandInteractionOption, ALWAYS_OPTION_CONSTRAINT, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

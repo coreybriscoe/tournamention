@@ -2,16 +2,10 @@ import { ActionRowBuilder, ButtonBuilder, EmbedBuilder } from 'discord.js';
 import { getCurrentTournament } from '../../../backend/queries/guildSettingsQueries.js';
 import { getPendingSubmissionsOfTournamentPaged } from '../../../backend/queries/submissionQueries.js';
 import { getTournamentByName } from '../../../backend/queries/tournamentQueries.js';
-import firstButton from '../../../buttons/first.js';
-import lastButton from '../../../buttons/last.js';
-import nextButton from '../../../buttons/next.js';
-import previousButton from '../../../buttons/previous.js';
-import { TournamentionClient } from '../../../types/client.js';
 import { ResolvedSubmission, ResolvedTournament } from '../../../types/customDocument.js';
-import { OptionValidationErrorStatus } from '../../../types/customError.js';
-import { OptionValidationErrorOutcome, Outcome, OutcomeStatus, PaginatedOutcome, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome } from '../../../types/outcome.js';
-import { PaginatedSolverParams } from '../../../types/paginatedSolverParams.js';
 import config from '../../../config.js';
+import { RendezvousClient as TournamentionClient, OutcomeStatus, PaginatedOutcome, Outcome, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome, OptionValidationErrorOutcome, OptionValidationErrorStatus, firstButton, lastButton, nextButton, previousButton } from 'discord-rendezvous';
+import { PaginatedSolverParams } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

@@ -1,14 +1,9 @@
 import { SlashCommandBuilder } from 'discord.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
-import { OutcomeStatus, OptionValidationErrorOutcome } from '../../types/outcome.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints, ALWAYS_OPTION_CONSTRAINT } from '../architecture/validation.js';
 import { getTournamentByName } from '../../backend/queries/tournamentQueries.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
-import { CachedPendingSubmissionsInteraction } from '../../types/cachedInteractions.js';
 import { PendingSubmissionsOutcome, PendingSubmissionsSolverParams, PendingSubmissionsStatus, T1, pendingSubmissionsSlashCommandDescriptions, pendingSubmissionsSolver } from './pending-submissions/pending-submissions-exports.js';
+import { LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, LimitedCommandInteractionOption, ALWAYS_OPTION_CONSTRAINT, OptionValidationErrorStatus, validateConstraints, OptionValidationError, OutcomeStatus, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 
 const pendingSubmissionsSlashCommandValidator = async (interaction: LimitedCommandInteraction): Promise<PendingSubmissionsSolverParams | OptionValidationErrorOutcome<T1>> => {
@@ -62,7 +57,7 @@ const pendingSubmissionsSlashCommandValidator = async (interaction: LimitedComma
     };
 };
 
-const PendingSubmissionsCommand = new SimpleRendezvousSlashCommand<PendingSubmissionsOutcome, PendingSubmissionsSolverParams, T1, PendingSubmissionsStatus, typeof CachedPendingSubmissionsInteraction.cacheParams>(
+const PendingSubmissionsCommand = new SimpleRendezvousSlashCommand<PendingSubmissionsOutcome, PendingSubmissionsSolverParams, T1, PendingSubmissionsStatus>(
     new SlashCommandBuilder()
         .setName('pending-submissions')
         .setDescription('Show the submissions waiting for review in the tournament.')
@@ -70,7 +65,8 @@ const PendingSubmissionsCommand = new SimpleRendezvousSlashCommand<PendingSubmis
     pendingSubmissionsSlashCommandDescriptions,
     pendingSubmissionsSlashCommandValidator,
     pendingSubmissionsSolver,
-    CachedPendingSubmissionsInteraction.cache,
+    false,
+    true,
 );
 
 export default PendingSubmissionsCommand;

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { pathToFileURL, fileURLToPath } from 'url';
-import { TournamentionClient } from '../types/client.js';
+import { RendezvousClient as TournamentionClient } from 'discord-rendezvous';
 
 const addCommandsFromPath = async (client: TournamentionClient, commandsPath: URL) => {
     const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js') || file.endsWith('.ts'));

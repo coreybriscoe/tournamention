@@ -1,12 +1,9 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { GuildMember, PermissionsBitField, User } from 'discord.js';
-import { NonexistentJointGuildAndMemberError, OptionValidationError, OptionValidationErrorStatus, UnknownError } from '../../types/customError.js';
+import { NonexistentJointGuildAndMemberError, UnknownError } from '../../types/customError.js';
 import { setJudgeActive, setOrCreateActiveJudge } from '../../backend/queries/profileQueries.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
-import { OptionValidationErrorOutcome, Outcome, OutcomeStatus, OutcomeWithDuoBody, OutcomeWithDuoListBody, SlashCommandDescribedOutcome } from '../../types/outcome.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints } from '../architecture/validation.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
+import { OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, OptionValidationErrorStatus, LimitedCommandInteractionOption, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, OutcomeWithDuoListBody, OutcomeWithDuoBody, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

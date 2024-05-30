@@ -3,16 +3,12 @@ import { getTournamentByName } from '../../backend/queries/tournamentQueries.js'
 import { SubmissionDocument } from '../../types/customDocument.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
 import { getChallengeOfTournamentByName } from '../../backend/queries/challengeQueries.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { getOrCreateContestant } from '../../backend/queries/profileQueries.js';
 import { createSubmission, getSubmissionsForChallengeFromContestant } from '../../backend/queries/submissionQueries.js';
 import { SubmissionStatus } from '../../backend/schemas/submission.js';
-import { OptionValidationErrorOutcome, Outcome, OutcomeStatus, OutcomeWithDuoBody, OutcomeWithMonoBody, SlashCommandDescribedOutcome } from '../../types/outcome.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints } from '../architecture/validation.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import config from '../../config.js';
+import { OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, LimitedCommandInteractionOption, OptionValidationErrorStatus, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, OutcomeWithMonoBody, OutcomeWithDuoBody, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

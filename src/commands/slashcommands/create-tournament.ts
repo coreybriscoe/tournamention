@@ -1,16 +1,12 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { GuildMember, PermissionsBitField } from 'discord.js';
 import { TournamentBuilder, getTournamentByName } from '../../backend/queries/tournamentQueries.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
-import { OptionValidationErrorOutcome, Outcome, OutcomeStatus, OutcomeWithMonoBody, SlashCommandDescribedOutcome } from '../../types/outcome.js';
 import { ResolvedTournament, resolveTournaments } from '../../types/customDocument.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
 import { getJudgeByGuildIdAndMemberId } from '../../backend/queries/profileQueries.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints } from '../architecture/validation.js';
 import { formatTournamentDetails } from './tournaments.js';
 import config from '../../config.js';
+import { OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, OptionValidationErrorStatus, LimitedCommandInteractionOption, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, OutcomeWithMonoBody, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

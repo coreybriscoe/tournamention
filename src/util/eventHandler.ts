@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { pathToFileURL, fileURLToPath } from 'url';
-import { TournamentionClient } from '../types/client';
 import { CustomEvent } from '../types/customEvent';
+import { RendezvousClient as TournamentionClient } from 'discord-rendezvous';
 
 export const prepareEvents = async (client: TournamentionClient) => {
     const eventsPath = pathToFileURL(path.join(process.cwd(), './src/events'));

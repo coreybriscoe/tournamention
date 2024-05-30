@@ -3,15 +3,11 @@ import { GuildMember, PermissionsBitField } from 'discord.js';
 import { addChallengeToTournament, getDifficultyByEmoji, getTournamentByName } from '../../backend/queries/tournamentQueries.js';
 import { ChallengeDocument } from '../../types/customDocument.js';
 import { ChallengeModel } from '../../backend/schemas/challenge.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
-import { OptionValidationErrorOutcome, Outcome, OutcomeStatus, OutcomeWithDuoBody, SlashCommandDescribedOutcome } from '../../types/outcome.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints } from '../architecture/validation.js';
 import { getJudgeByGuildIdAndMemberId } from '../../backend/queries/profileQueries.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import config from '../../config.js';
+import { Constraint, LimitedCommandInteraction, LimitedCommandInteractionOption, OptionValidationError, OptionValidationErrorOutcome, OptionValidationErrorStatus, Outcome, OutcomeStatus, OutcomeWithDuoBody, SimpleRendezvousSlashCommand, SlashCommandDescribedOutcome, validateConstraints } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.

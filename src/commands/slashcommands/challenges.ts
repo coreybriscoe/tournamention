@@ -1,22 +1,12 @@
 import { ActionRowBuilder, ButtonBuilder, EmbedBuilder, GuildMember, PermissionsBitField, SlashCommandBuilder } from 'discord.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
-import { OutcomeStatus, Outcome, OptionValidationErrorOutcome, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome, PaginatedOutcome } from '../../types/outcome.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints, ALWAYS_OPTION_CONSTRAINT } from '../architecture/validation.js';
 import { getDifficultyByEmoji, getTournamentByName } from '../../backend/queries/tournamentQueries.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
 import { getChallengesOfTournamentByDifficulty, getChallengesOfTournamentByGame, getChallengesOfTournamentByGamePaged, getChallengesOfTournamentPaged } from '../../backend/queries/challengeQueries.js';
 import { getJudgeByGuildIdAndMemberId } from '../../backend/queries/profileQueries.js';
 import { ChallengeDocument, ResolvedChallenge, ResolvedTournament } from '../../types/customDocument.js';
-import { CachedChallengesInteraction } from '../../types/cachedInteractions.js';
-import { TournamentionClient } from '../../types/client.js';
-import firstButton from '../../buttons/first.js';
-import lastButton from '../../buttons/last.js';
-import nextButton from '../../buttons/next.js';
-import previousButton from '../../buttons/previous.js';
-import { PaginatedSolverParams } from '../../types/paginatedSolverParams.js';
+import { RendezvousClient as TournamentionClient, OutcomeStatus, PaginatedOutcome, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, LimitedCommandInteractionOption, ALWAYS_OPTION_CONSTRAINT, OptionValidationErrorStatus, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, SlashCommandEmbedDescribedOutcome, SimpleRendezvousSlashCommand, firstButton, lastButton, nextButton, previousButton } from 'discord-rendezvous';
+import { PaginatedSolverParams } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.
@@ -324,7 +314,7 @@ export const challengesSlashCommandDescriptions = new Map<ChallengesStatus, (o: 
     })],
 ]);
 
-const ChallengesCommand = new SimpleRendezvousSlashCommand<ChallengesOutcome, ChallengesSolverParams, T1, ChallengesStatus, typeof CachedChallengesInteraction.cacheParams>(
+const ChallengesCommand = new SimpleRendezvousSlashCommand<ChallengesOutcome, ChallengesSolverParams, T1, ChallengesStatus>(
     new SlashCommandBuilder()
         .setName('challenges')
         .setDescription('Show the challenges posted for a tournament.')
@@ -335,7 +325,8 @@ const ChallengesCommand = new SimpleRendezvousSlashCommand<ChallengesOutcome, Ch
     challengesSlashCommandDescriptions,
     challengesSlashCommandValidator,
     challengesSolver,
-    CachedChallengesInteraction.cache,
+    false,
+    true,
 );
 
 export default ChallengesCommand;

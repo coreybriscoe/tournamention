@@ -6,8 +6,7 @@ import { pathToFileURL, fileURLToPath } from 'url';
 import { REST } from '@discordjs/rest';
 import { Routes } from 'discord-api-types/v9';
 import { RESTPostAPIApplicationCommandsJSONBody } from 'discord.js';
-import { RendezvousCommand } from '../commands/architecture/rendezvousCommand.js';
-import { OutcomeTypeConstraint } from '../types/outcome.js';
+import { RendezvousCommand, OutcomeTypeConstraint } from 'discord-rendezvous';
 
 const commands = new Array<RESTPostAPIApplicationCommandsJSONBody>();
 const commandsPath = pathToFileURL(path.join(process.cwd(), './src/commands'));

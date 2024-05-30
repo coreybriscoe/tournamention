@@ -1,6 +1,6 @@
 import { BaseInteraction, ButtonInteraction, ChatInputCommandInteraction } from 'discord.js';
-import { TournamentionClient } from '../types/client.js';
 import { CustomEvent } from '../types/customEvent.js';
+import { RendezvousClient as TournamentionClient } from 'discord-rendezvous';
 
 const interactionCreate = new CustomEvent(
     'interactionCreate',

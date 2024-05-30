@@ -3,10 +3,12 @@ dotenv.config();
 import mongoose from 'mongoose';
 import example from './example.js';
 import example2 from './example2.js';
-import { TournamentionClient } from './types/client.js';
+import { RendezvousClient as TournamentionClient } from 'discord-rendezvous';
 import { prepareCommands } from './util/commandHandler.js';
 import { prepareEvents } from './util/eventHandler.js';
 import { prepareButtons } from './util/buttonHandler.js';
+import { GatewayIntentBits } from 'discord.js';
+import config from './config.js';
 
 // Mongoose configuration setting (see https://github.com/Automattic/mongoose/issues/7150)
 mongoose.Schema.Types.String.checkRequired(v => v != null);
@@ -24,13 +26,16 @@ mongoose.connect(process.env.DB_URI as string, {
         console.log(`Error connecting to database: ${err}}`);
     });
 
+// Instantiate client singleton after selecting intents
+TournamentionClient.addIntents([GatewayIntentBits.Guilds]);
+if (!config.featureFlags.privacyMode) TournamentionClient.addIntents([GatewayIntentBits.MessageContent]);
 const client = await TournamentionClient.getInstance();
 
 // APPLICATION COMMANDS
 prepareCommands(client);
 
 // BUTTONS
-prepareButtons(client);
+prepareButtons(client); // Currently no custom buttons -- keeping this for the future
 
 // EVENTS
 prepareEvents(client);

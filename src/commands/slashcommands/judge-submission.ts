@@ -1,18 +1,14 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { GuildMember, PermissionsBitField } from 'discord.js';
-import { OutcomeStatus, Outcome, SlashCommandDescribedOutcome, OutcomeWithDuoListBody, OutcomeWithDuoBody, OutcomeWithMonoBody, OptionValidationErrorOutcome } from '../../types/outcome.js';
 import { getChallengeOfTournamentByName } from '../../backend/queries/challengeQueries.js';
 import { getContestantByGuildIdAndMemberId, getJudgeByGuildIdAndMemberId } from '../../backend/queries/profileQueries.js';
 import { createOrUpdateReviewNoteAndAddTo, getNewestSubmissionForChallengeFromContestant } from '../../backend/queries/submissionQueries.js';
-import { OptionValidationError, OptionValidationErrorStatus } from '../../types/customError.js';
 import { SubmissionStatus } from '../../backend/schemas/submission.js';
-import { LimitedCommandInteraction, LimitedCommandInteractionOption } from '../../types/limitedCommandInteraction.js';
 import { ValueOf } from '../../types/typelogic.js';
-import { Constraint, validateConstraints } from '../architecture/validation.js';
 import { getTournamentByName } from '../../backend/queries/tournamentQueries.js';
 import { getCurrentTournament } from '../../backend/queries/guildSettingsQueries.js';
-import { SimpleRendezvousSlashCommand } from '../architecture/rendezvousCommand.js';
 import { JudgeDocument, SubmissionDocument } from '../../types/customDocument.js';
+import { OutcomeStatus, Outcome, LimitedCommandInteraction, OptionValidationErrorOutcome, Constraint, OptionValidationErrorStatus, LimitedCommandInteractionOption, validateConstraints, OptionValidationError, SlashCommandDescribedOutcome, OutcomeWithDuoListBody, OutcomeWithDuoBody, OutcomeWithMonoBody, SimpleRendezvousSlashCommand } from 'discord-rendezvous';
 
 /**
  * Alias for the first generic type of the command.
